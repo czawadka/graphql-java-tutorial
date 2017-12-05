@@ -16,10 +16,17 @@ public class MongoConfig {
     public MongoCollection<Document> linksCollection(MongoDatabase mongoDatabase) {
         return mongoDatabase.getCollection("links");
     }
+
     @Bean
     @Qualifier("users")
     public MongoCollection<Document> usersCollection(MongoDatabase mongoDatabase) {
         return mongoDatabase.getCollection("users");
+    }
+
+    @Bean
+    @Qualifier("votes")
+    public MongoCollection<Document> votesCollection(MongoDatabase mongoDatabase) {
+        return mongoDatabase.getCollection("votes");
     }
 
     @Bean

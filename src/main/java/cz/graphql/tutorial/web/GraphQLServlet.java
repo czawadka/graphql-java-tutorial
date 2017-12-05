@@ -2,6 +2,7 @@ package cz.graphql.tutorial.web;
 
 import com.coxautodev.graphql.tools.GraphQLResolver;
 import com.coxautodev.graphql.tools.SchemaParser;
+import cz.graphql.tutorial.schema.Scalars;
 import cz.graphql.tutorial.schema.User;
 import cz.graphql.tutorial.service.UserRepository;
 import graphql.schema.GraphQLSchema;
@@ -42,6 +43,7 @@ public class GraphQLServlet extends SimpleGraphQLServlet {
         return SchemaParser.newParser()
                 .file("schema.graphqls")
                 .resolvers(new ArrayList<>(resolvers))
+                .scalars(Scalars.dateTime)
                 .build()
                 .makeExecutableSchema();
     }
