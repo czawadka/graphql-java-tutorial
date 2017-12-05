@@ -1,6 +1,6 @@
 package cz.graphql.tutorial.schema;
 
-import com.coxautodev.graphql.tools.GraphQLRootResolver;
+import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import cz.graphql.tutorial.service.LinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class Query implements GraphQLRootResolver {
+public class Query implements GraphQLQueryResolver {
     private final LinkRepository linkRepository;
 
     @Autowired
