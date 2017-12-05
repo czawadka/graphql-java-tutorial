@@ -5,6 +5,7 @@ import cz.graphql.tutorial.schema.Link;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class LinkRepository {
     private final MongoCollection<Document> links;
 
     @Autowired
-    public LinkRepository(MongoCollection<Document> links) {
+    public LinkRepository(@Qualifier("links") MongoCollection<Document> links) {
         this.links = links;
     }
 
