@@ -15,6 +15,9 @@ import static com.mongodb.client.model.Filters.eq;
 
 @Component
 public class LinkRepository {
+    public static final String FIELD_URL = "url";
+    public static final String FIELD_DESCRIPTION = "description";
+    public static final String FIELD_USER_ID = "userId";
     private final MongoCollection<Document> links;
 
     @Autowired
@@ -33,17 +36,21 @@ public class LinkRepository {
                 .into(new ArrayList<>());
     }
 
-    public void saveLink(Link link) {
-        Document doc = new Document();
-        doc.append("url", link.getUrl());
-        doc.append("description", link.getDescription());
+    public Link saveLink(Link link) {
+        Document doc = new Document()
+            .append(FIELD_URL, link.getUrl())
+            .append(FIELD_DESCRIPTION, link.getDescription())
+            .append(FIELD_USER_ID, link.getUserId());
         links.insertOne(doc);
+        return link(doc);
     }
 
     private Link link(Document doc) {
         return new Link(
                 doc.get("_id").toString(),
-                doc.getString("url"),
-                doc.getString("description"));
+                doc.getString(FIELD_URL),
+                doc.getString(FIELD_DESCRIPTION),
+                doc.getString(FIELD_USER_ID)
+        );
     }
 }

@@ -1,6 +1,7 @@
-package cz.graphql.tutorial.schema;
+package cz.graphql.tutorial.resolver;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import cz.graphql.tutorial.schema.Link;
 import cz.graphql.tutorial.service.LinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
