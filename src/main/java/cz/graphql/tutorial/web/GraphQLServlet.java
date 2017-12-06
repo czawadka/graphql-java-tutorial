@@ -6,6 +6,7 @@ import cz.graphql.tutorial.schema.Scalars;
 import cz.graphql.tutorial.schema.User;
 import cz.graphql.tutorial.service.UserRepository;
 import graphql.schema.GraphQLSchema;
+import graphql.servlet.DefaultExecutionStrategyProvider;
 import graphql.servlet.GraphQLContext;
 import graphql.servlet.SimpleGraphQLServlet;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,8 @@ public class GraphQLServlet extends SimpleGraphQLServlet {
 
     @Autowired
     public GraphQLServlet(UserRepository userRepository, Collection<GraphQLResolver<?>> resolvers) {
-        super(buildSchema(resolvers));
+        super(buildSchema(resolvers), new DefaultExecutionStrategyProvider(), null, null, null,
+                new SanitizedErrorHandler(), null, null, null);
         this.userRepository = userRepository;
     }
 
