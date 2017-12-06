@@ -2,6 +2,7 @@ package cz.graphql.tutorial.resolver;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import cz.graphql.tutorial.schema.Link;
+import cz.graphql.tutorial.schema.LinkFilter;
 import cz.graphql.tutorial.service.LinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,7 @@ public class Query implements GraphQLQueryResolver {
         this.linkRepository = linkRepository;
     }
 
-    public List<Link> link() {
-        return linkRepository.getAllLinks();
+    public List<Link> link(LinkFilter linkFilter) {
+        return linkRepository.getLinks(linkFilter);
     }
 }
