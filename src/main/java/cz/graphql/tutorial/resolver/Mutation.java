@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
 @Component
 public class Mutation implements GraphQLMutationResolver {
@@ -34,7 +35,7 @@ public class Mutation implements GraphQLMutationResolver {
 
     public Link createLink(String url, String description, DataFetchingEnvironment env) {
         AuthContext context = env.getContext();
-        Link newLink = new Link(null, url, description, context.getUser().getId());
+        Link newLink = new Link(null, url, description, Optional.ofNullable(context.getUser()).map(User::getId).orElse(null));
         return linkRepository.saveLink(newLink);
     }
 
